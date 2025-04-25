@@ -7,13 +7,25 @@ import { createPortal } from 'react-dom';
 export default function EmailLink() {
   const [showOptions, setShowOptions] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0 });
   const dropdownRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const email = 'camottimo@gmail.com';
   const subject = 'Hello - coming from your personal website';
 
+  const updateDropdownPosition = () => {
+    if (buttonRef.current) {
+      const rect = buttonRef.current.getBoundingClientRect();
+      setDropdownPosition({
+        top: rect.bottom + 2,
+        left: rect.left - (256 - rect.width) / 2
+      });
+    }
+  };
+
   useEffect(() => {
     setMounted(true);
+    
     function handleClickOutside(event: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node) &&
           buttonRef.current && !buttonRef.current.contains(event.target as Node)) {
@@ -21,11 +33,26 @@ export default function EmailLink() {
       }
     }
 
+    function handleScroll() {
+      if (showOptions) {
+        updateDropdownPosition();
+      }
+    }
+
     document.addEventListener('mousedown', handleClickOutside);
+    window.addEventListener('scroll', handleScroll, true);
+    
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+      window.removeEventListener('scroll', handleScroll, true);
     };
-  }, []);
+  }, [showOptions]);
+
+  useEffect(() => {
+    if (showOptions) {
+      updateDropdownPosition();
+    }
+  }, [showOptions]);
 
   const openGmail = () => {
     const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodeURIComponent(subject)}`;
@@ -65,9 +92,8 @@ export default function EmailLink() {
           ref={dropdownRef}
           className="fixed z-[9999] bg-white shadow-xl border border-gray-200 rounded-lg"
           style={{
-            top: buttonRef.current ? buttonRef.current.getBoundingClientRect().bottom + window.scrollY + 2 : 0,
-            left: buttonRef.current ? 
-              buttonRef.current.getBoundingClientRect().left + window.scrollX - (256 - buttonRef.current.getBoundingClientRect().width) / 2 : 0,
+            top: `${dropdownPosition.top}px`,
+            left: `${dropdownPosition.left}px`,
             width: '16rem'
           }}
         >
