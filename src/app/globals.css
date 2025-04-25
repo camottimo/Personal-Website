@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --border: 214.3 31.8% 91.4%;
+  }
+
+  input, textarea {
+    @apply w-full px-4 py-3 border border-gray-200 rounded-lg bg-white focus:ring-2 focus:ring-gray-200 focus:border-gray-300 outline-none transition-all;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .prose {
+    @apply text-gray-600;
+  }
+
+  .prose h1, .prose h2, .prose h3, .prose h4 {
+    @apply text-gray-900;
+  }
+
+  .prose a {
+    @apply text-blue-600 hover:text-blue-800;
+  }
+
+  .prose ul {
+    @apply list-disc pl-5;
+  }
+
+  .prose ol {
+    @apply list-decimal pl-5;
+  }
+
+  .prose li {
+    @apply my-2;
+  }
+} 
