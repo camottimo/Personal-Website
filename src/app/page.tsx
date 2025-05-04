@@ -77,7 +77,12 @@ const tools = [
             className="mr-2"
           />
         )
-      },
+      }
+    ]
+  },
+  {
+    level: "Intermediate",
+    items: [
       {
         name: "Cursor",
         icon: (
@@ -89,12 +94,7 @@ const tools = [
             className="mr-2"
           />
         )
-      }
-    ]
-  },
-  {
-    level: "Intermediate",
-    items: [
+      },
       {
         name: "Illustrator",
         icon: (
@@ -130,9 +130,13 @@ const tools = [
       {
         name: "Snowflake",
         icon: (
-          <svg viewBox="0 0 24 24" className="w-4 h-4 mr-2">
-            <path fill="#29B5E8" d="M12 0L1.75 6v12L12 24l10.25-6V6L12 0zm-1.775 16.283l-2.414-2.414 2.414-2.414 2.414 2.414-2.414 2.414zm1.775-6.363L9.586 7.506 12 5.092l2.414 2.414L12 9.92zm3.55 6.363l-2.414-2.414 2.414-2.414 2.414 2.414-2.414 2.414z"/>
-          </svg>
+          <Image
+            src="/images/snowflake.svg"
+            alt="Snowflake logo"
+            width={16}
+            height={16}
+            className="mr-2"
+          />
         )
       },
       {
@@ -196,10 +200,13 @@ const tools = [
       {
         name: "Jupyter",
         icon: (
-          <svg viewBox="0 0 24 24" className="w-4 h-4 mr-2">
-            <path fill="#F37726" d="M12 0a12 12 0 1 0 12 12A12 12 0 0 0 12 0zm0 22.5a10.5 10.5 0 1 1 10.5-10.5A10.512 10.512 0 0 1 12 22.5z"/>
-            <path fill="#F37726" d="M12 4.8a1.8 1.8 0 1 0 1.8 1.8A1.8 1.8 0 0 0 12 4.8zm0 12.6a1.8 1.8 0 1 0 1.8 1.8 1.8 1.8 0 0 0-1.8-1.8z"/>
-          </svg>
+          <Image
+            src="/images/jupyter.svg"
+            alt="Jupyter logo"
+            width={16}
+            height={16}
+            className="mr-2"
+          />
         )
       }
     ]
@@ -240,13 +247,15 @@ export default function Home() {
             {/* Contact Links */}
             <div className="flex justify-center gap-6 pt-4">
               <EmailLink />
-              <a href="tel:+15169744080" className="text-gray-600 hover:text-gray-900 flex items-center">
-                <PhoneIcon className="h-4 w-4 mr-2 text-gray-400" />
-                Phone
-              </a>
               <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-900 flex items-center">
                 <DocumentIcon className="h-4 w-4 mr-2 text-gray-400" />
                 Resume
+              </a>
+              <a href="https://github.com/camottimo" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-900 flex items-center">
+                <svg className="h-4 w-4 mr-2 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                </svg>
+                GitHub
               </a>
               <a href="https://www.linkedin.com/in/camryn-ottimo/" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-900 flex items-center">
                 <svg className="h-4 w-4 mr-2 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
