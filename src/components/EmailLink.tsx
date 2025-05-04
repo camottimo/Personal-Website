@@ -1,10 +1,14 @@
 'use client';
 
 import { EnvelopeIcon } from '@heroicons/react/24/outline';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, forwardRef, useImperativeHandle } from 'react';
 import { createPortal } from 'react-dom';
 
-export default function EmailLink() {
+export type EmailLinkHandle = {
+  openDropdown: () => void;
+};
+
+const EmailLink = forwardRef<EmailLinkHandle, {}>((props, ref) => {
   const [showOptions, setShowOptions] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0, width: 0 });
@@ -14,27 +18,34 @@ export default function EmailLink() {
   const email = 'camottimo@gmail.com';
   const subject = 'Hello - coming from your personal website';
 
+  useImperativeHandle(ref, () => ({
+    openDropdown: () => setShowOptions(true),
+  }));
+
   const updateDropdownPosition = () => {
     if (buttonRef.current) {
       const rect = buttonRef.current.getBoundingClientRect();
       const dropdownWidth = Math.min(window.innerWidth * 0.9, 256);
       let left = rect.left + window.scrollX - (dropdownWidth - rect.width) / 2;
-      // Clamp left so dropdown doesn't overflow viewport
       left = Math.max(8, Math.min(left, window.innerWidth - dropdownWidth - 8));
       setDropdownPosition({
         top: rect.bottom + 2,
         left,
-        width: dropdownWidth
+        width: dropdownWidth,
       });
     }
   };
 
   useEffect(() => {
     setMounted(true);
-    
+
     function handleClickOutside(event: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node) &&
-          buttonRef.current && !buttonRef.current.contains(event.target as Node)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node) &&
+        buttonRef.current &&
+        !buttonRef.current.contains(event.target as Node)
+      ) {
         setShowOptions(false);
       }
     }
@@ -47,7 +58,7 @@ export default function EmailLink() {
 
     document.addEventListener('mousedown', handleClickOutside);
     window.addEventListener('scroll', handleScroll, true);
-    
+
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
       window.removeEventListener('scroll', handleScroll, true);
@@ -85,7 +96,7 @@ export default function EmailLink() {
   };
 
   return (
-    <div className="relative">
+    <div className="relative" id="email-link-section">
       <button
         ref={buttonRef}
         onClick={() => setShowOptions(!showOptions)}
@@ -106,7 +117,7 @@ export default function EmailLink() {
       )}
 
       {mounted && showOptions && createPortal(
-        <div 
+        <div
           ref={dropdownRef}
           className="fixed z-[9999] bg-white shadow-xl border border-gray-200 rounded-lg"
           style={{
@@ -114,7 +125,7 @@ export default function EmailLink() {
             left: `${dropdownPosition.left}px`,
             width: dropdownPosition.width,
             maxWidth: '90vw',
-            minWidth: 200
+            minWidth: 200,
           }}
         >
           <div className="p-4 space-y-3">
@@ -161,4 +172,6 @@ export default function EmailLink() {
       )}
     </div>
   );
-} 
+});
+
+export default EmailLink; 

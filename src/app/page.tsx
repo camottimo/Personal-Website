@@ -1,4 +1,5 @@
-import React from 'react'
+"use client";
+import React, { useRef } from 'react'
 import Image from 'next/image'
 import { 
   AcademicCapIcon, 
@@ -10,7 +11,7 @@ import {
 } from '@heroicons/react/24/outline'
 import WorkExperience from '@/components/WorkExperience'
 import Projects from '@/components/Projects'
-import EmailLink from '@/components/EmailLink'
+import EmailLink, { EmailLinkHandle } from '@/components/EmailLink'
 
 const skills = [
   {
@@ -214,6 +215,8 @@ const tools = [
 ]
 
 export default function Home() {
+  const emailLinkRef = useRef<EmailLinkHandle>(null);
+
   return (
     <div className="min-h-screen bg-white">
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -246,7 +249,7 @@ export default function Home() {
             
             {/* Contact Links */}
             <div className="flex justify-center gap-6 pt-4">
-              <EmailLink />
+              <EmailLink ref={emailLinkRef} />
               <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-900 flex items-center">
                 <DocumentIcon className="h-4 w-4 mr-2 text-gray-400" />
                 Resume
@@ -386,20 +389,22 @@ export default function Home() {
           <section className="space-y-6">
             <h2 className="text-2xl font-semibold">Reach out ✍️</h2>
             <div className="space-y-4">
-              <p className="text-gray-600">If you're interested in my work, I'd love to hear from you.</p>
-              <p className="text-gray-600">Feel free to drop me a message, and I'll get back to you asap!</p>
-              <form className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <input type="text" placeholder="First name" className="rounded-lg border-gray-200" required />
-                  <input type="text" placeholder="Last name" className="rounded-lg border-gray-200" required />
-                  <input type="tel" placeholder="Phone number" className="rounded-lg border-gray-200" required />
-                  <input type="email" placeholder="Email" className="rounded-lg border-gray-200" required />
-                </div>
-                <textarea placeholder="Message" rows={6} className="w-full rounded-lg border-gray-200" required />
-                <button type="submit" className="bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition-colors">
-                  Submit →
-                </button>
-              </form>
+              <p className="text-gray-600">
+                If you're interested in my work, I'd love to hear from you.{' '}
+                <span
+                  className="text-blue-600 hover:underline cursor-pointer"
+                  onClick={() => {
+                    const section = document.getElementById('email-link-section');
+                    if (section) {
+                      section.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                    emailLinkRef.current?.openDropdown();
+                  }}
+                >
+                  Email me
+                </span>
+                , and I'll get back to you asap!
+              </p>
             </div>
           </section>
         </div>
