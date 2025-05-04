@@ -237,7 +237,7 @@ export default function Home() {
               Hi, I'm Camryn 👋
             </h1>
             <div className="space-y-2 text-lg text-gray-600">
-              <p>data science meets product vision 🧬➡️📱</p>
+              <p>data science meets product vision 🧠➡️📱</p>
               <p>passionate about building meaningful products that people love 🔥</p>
               <p>on a journey into product management — where strategy, creativity, and impact collide</p>
               <p>golfer ⛳️ chess fanatic ♟️ fashion start-up 👕</p>
