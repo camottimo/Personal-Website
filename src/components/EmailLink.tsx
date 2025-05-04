@@ -8,6 +8,7 @@ export default function EmailLink() {
   const [showOptions, setShowOptions] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0 });
+  const [copied, setCopied] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const email = 'camottimo@gmail.com';
@@ -73,6 +74,8 @@ export default function EmailLink() {
 
   const copyEmail = () => {
     navigator.clipboard.writeText(email);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1200);
     setShowOptions(false);
   };
 
@@ -86,6 +89,16 @@ export default function EmailLink() {
         <EnvelopeIcon className="h-4 w-4 mr-2 text-gray-400" />
         Email
       </button>
+
+      {/* Checkmark popup animation */}
+      {copied && (
+        <div className="absolute left-1/2 -translate-x-1/2 -top-10 flex items-center bg-green-500 text-white px-4 py-2 rounded-full shadow-lg animate-fade-in-out z-[10000]">
+          <svg className="h-5 w-5 mr-2" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+          Copied!
+        </div>
+      )}
 
       {mounted && showOptions && createPortal(
         <div 
