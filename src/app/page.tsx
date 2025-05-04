@@ -274,14 +274,17 @@ export default function Home() {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {skills.map((skill) => (
-                <div key={skill.category} className="bg-gray-50 rounded-lg p-6 space-y-4">
-                  <div className="flex items-center space-x-3">
-                    <span className="text-xl">{skill.icon}</span>
-                    <h3 className="text-lg font-medium">{skill.category}</h3>
+                <div key={skill.category} className="bg-gray-50 rounded-lg p-6 space-y-4 transition-transform duration-200 hover:scale-105 hover:shadow-xl cursor-pointer">
+                  <div className="flex items-center space-x-3 pb-2 border-b border-gray-200">
+                    <span className="text-2xl">{skill.icon}</span>
+                    <h3 className="text-lg font-semibold text-gray-800">{skill.category}</h3>
                   </div>
-                  <ul className="space-y-2 text-sm">
+                  <ul className="space-y-3 pt-2">
                     {skill.items.map((item) => (
-                      <li key={item} className="text-gray-600">{item}</li>
+                      <li key={item} className="flex items-start text-gray-700 text-sm">
+                        <svg className="h-4 w-4 text-green-400 mt-1 mr-2 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                        <span>{item}</span>
+                      </li>
                     ))}
                   </ul>
                 </div>
