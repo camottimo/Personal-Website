@@ -3,6 +3,7 @@
 import { EnvelopeIcon } from '@heroicons/react/24/outline';
 import { useState, useEffect, useRef, forwardRef, useImperativeHandle } from 'react';
 import { createPortal } from 'react-dom';
+import Image from 'next/image';
 
 export type EmailLinkHandle = {
   openDropdown: () => void;
@@ -143,18 +144,30 @@ const EmailLink = forwardRef<EmailLinkHandle, {}>((props, ref) => {
               onClick={openGmail}
               className="w-full text-left text-sm text-gray-600 hover:text-gray-900 flex items-center"
             >
-              <svg className="h-4 w-4 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
+              <Image
+                src="/images/gmail-logo.svg"
+                alt="Gmail logo"
+                width={16}
+                height={16}
+                className="h-4 w-4 mr-2"
+                style={{ objectFit: 'contain' }}
+                priority={false}
+              />
               Open in Gmail
             </button>
             <button
               onClick={openOutlook}
               className="w-full text-left text-sm text-gray-600 hover:text-gray-900 flex items-center"
             >
-              <svg className="h-4 w-4 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
+              <Image
+                src="/images/outlook-logo.svg"
+                alt="Outlook logo"
+                width={16}
+                height={16}
+                className="h-4 w-4 mr-2"
+                style={{ objectFit: 'contain' }}
+                priority={false}
+              />
               Open in Outlook
             </button>
             <button
