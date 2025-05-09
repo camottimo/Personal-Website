@@ -103,8 +103,37 @@ export default function Projects() {
       >
         <div className="fixed inset-0 bg-black/30 backdrop-blur-sm" aria-hidden="true" />
         <div className="fixed inset-0 flex items-center justify-center p-4 overflow-y-auto">
-          <div className="flex min-h-full items-center justify-center">
-            <Dialog.Panel className="mx-auto w-full max-w-2xl rounded-lg bg-white p-6 shadow-xl max-h-[90vh] overflow-y-auto animate-modal">
+          <div className="flex min-h-full items-center justify-center relative">
+            {/* Floating images for Understated */}
+            {selectedProject?.name === 'Understated' && selectedProject.galleryImages && (
+              <>
+                <img
+                  src={selectedProject.galleryImages[0]}
+                  alt="Understated 1"
+                  className="hidden md:block absolute z-[100] w-40 h-60 object-cover rounded-xl border-[6px] border-white shadow-xl -left-40 top-0 pointer-events-none"
+                  style={{ transform: 'rotate(-8deg)' }}
+                />
+                <img
+                  src={selectedProject.galleryImages[1]}
+                  alt="Understated 2"
+                  className="hidden md:block absolute z-[100] w-40 h-60 object-cover rounded-xl border-[6px] border-white shadow-xl -right-32 top-0 pointer-events-none"
+                  style={{ transform: 'rotate(6deg)' }}
+                />
+                <img
+                  src={selectedProject.galleryImages[2]}
+                  alt="Understated 3"
+                  className="hidden md:block absolute z-[100] w-40 h-60 object-cover rounded-xl border-[6px] border-white shadow-xl -left-40 bottom-0 pointer-events-none"
+                  style={{ transform: 'rotate(10deg)' }}
+                />
+                <img
+                  src={selectedProject.galleryImages[3]}
+                  alt="Understated 4"
+                  className="hidden md:block absolute z-[100] w-40 h-60 object-cover rounded-xl border-[6px] border-white shadow-xl -right-32 bottom-0 pointer-events-none"
+                  style={{ transform: 'rotate(-4deg)' }}
+                />
+              </>
+            )}
+            <Dialog.Panel className="mx-auto w-full max-w-2xl rounded-lg bg-white p-6 shadow-xl max-h-[90vh] overflow-y-auto animate-modal relative z-50">
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
                   <div className="flex-shrink-0">
@@ -188,7 +217,8 @@ export default function Projects() {
                     ))}
                   </div>
 
-                  {selectedProject?.galleryImages && (
+                  {/* Only show the grid gallery if not Understated */}
+                  {selectedProject?.galleryImages && selectedProject.name !== 'Understated' && (
                     <div className="pt-6">
                       <div className="grid grid-cols-2 gap-4">
                         {selectedProject.galleryImages.map((image, index) => (
@@ -219,4 +249,4 @@ export default function Projects() {
       </Dialog>
     </section>
   );
-} 
+}
