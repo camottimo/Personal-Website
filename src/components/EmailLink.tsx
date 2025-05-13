@@ -5,23 +5,60 @@ import { useState, useEffect, useRef, forwardRef, useImperativeHandle } from 're
 import { createPortal } from 'react-dom';
 import Image from 'next/image';
 
-export type EmailLinkHandle = {
+export interface EmailLinkHandle {
   openDropdown: () => void;
-};
+}
 
-const EmailLink = forwardRef<EmailLinkHandle, {}>((props, ref) => {
-  const [showOptions, setShowOptions] = useState(false);
+const EmailLink = forwardRef<EmailLinkHandle>((_, ref) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const [mounted, setMounted] = useState(false);
   const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0, width: 0 });
   const [copied, setCopied] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const email = 'camottimo@gmail.com';
   const subject = 'Hello - coming from your personal website';
 
   useImperativeHandle(ref, () => ({
-    openDropdown: () => setShowOptions(true),
+    openDropdown: () => setIsOpen(true)
   }));
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      setIsOpen(false);
+    }
+  };
+
+  const handleEmailClick = () => {
+    setIsOpen(!isOpen);
+    if (!isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+  };
+
+  useEffect(() => {
+    setMounted(true);
+
+    function handleScroll() {
+      if (isOpen) {
+        updateDropdownPosition();
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll, true);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll, true);
+    };
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (isOpen) {
+      updateDropdownPosition();
+    }
+  }, [isOpen]);
 
   const updateDropdownPosition = () => {
     if (buttonRef.current) {
@@ -37,73 +74,39 @@ const EmailLink = forwardRef<EmailLinkHandle, {}>((props, ref) => {
     }
   };
 
-  useEffect(() => {
-    setMounted(true);
-
-    function handleClickOutside(event: MouseEvent) {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node) &&
-        buttonRef.current &&
-        !buttonRef.current.contains(event.target as Node)
-      ) {
-        setShowOptions(false);
-      }
-    }
-
-    function handleScroll() {
-      if (showOptions) {
-        updateDropdownPosition();
-      }
-    }
-
-    document.addEventListener('mousedown', handleClickOutside);
-    window.addEventListener('scroll', handleScroll, true);
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      window.removeEventListener('scroll', handleScroll, true);
-    };
-  }, [showOptions]);
-
-  useEffect(() => {
-    if (showOptions) {
-      updateDropdownPosition();
-    }
-  }, [showOptions]);
-
   const openGmail = () => {
     const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodeURIComponent(subject)}`;
     window.open(gmailUrl, '_blank');
-    setShowOptions(false);
+    setIsOpen(false);
   };
 
   const openOutlook = () => {
     const outlookUrl = `https://outlook.live.com/mail/0/deeplink/compose?to=${email}&subject=${encodeURIComponent(subject)}`;
     window.open(outlookUrl, '_blank');
-    setShowOptions(false);
+    setIsOpen(false);
   };
 
   const openDefaultClient = () => {
     window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}`;
-    setShowOptions(false);
+    setIsOpen(false);
   };
 
   const copyEmail = () => {
     navigator.clipboard.writeText(email);
     setCopied(true);
     setTimeout(() => setCopied(false), 1200);
-    setShowOptions(false);
+    setIsOpen(false);
   };
 
   return (
-    <div className="relative" id="email-link-section">
+    <div className="relative" ref={dropdownRef}>
       <button
         ref={buttonRef}
-        onClick={() => setShowOptions(!showOptions)}
-        className="text-gray-600 hover:text-gray-900 flex items-center"
+        onClick={handleEmailClick}
+        className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white flex items-center"
+        aria-label="Email options"
       >
-        <EnvelopeIcon className="h-4 w-4 mr-2 text-gray-400" />
+        <EnvelopeIcon className="h-4 w-4 mr-2 text-gray-400 dark:text-gray-500" />
         Email
       </button>
 
@@ -117,10 +120,9 @@ const EmailLink = forwardRef<EmailLinkHandle, {}>((props, ref) => {
         </div>
       )}
 
-      {mounted && showOptions && createPortal(
+      {mounted && isOpen && createPortal(
         <div
-          ref={dropdownRef}
-          className="fixed z-[9999] bg-white shadow-xl border border-gray-200 rounded-lg"
+          className="fixed z-[9999] bg-white dark:bg-gray-800 shadow-xl border border-gray-200 dark:border-gray-700 rounded-lg"
           style={{
             top: `${dropdownPosition.top}px`,
             left: `${dropdownPosition.left}px`,
@@ -130,10 +132,10 @@ const EmailLink = forwardRef<EmailLinkHandle, {}>((props, ref) => {
           }}
         >
           <div className="p-4 space-y-3">
-            <p className="text-sm text-gray-600">{email}</p>
+            <p className="text-sm text-gray-700 dark:text-gray-300">{email}</p>
             <button
               onClick={copyEmail}
-              className="w-full text-left text-sm text-gray-600 hover:text-gray-900 flex items-center"
+              className="w-full text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center"
             >
               <svg className="h-4 w-4 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
@@ -142,7 +144,7 @@ const EmailLink = forwardRef<EmailLinkHandle, {}>((props, ref) => {
             </button>
             <button
               onClick={openGmail}
-              className="w-full text-left text-sm text-gray-600 hover:text-gray-900 flex items-center"
+              className="w-full text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center"
             >
               <Image
                 src="/images/gmail-logo.svg"
@@ -157,7 +159,7 @@ const EmailLink = forwardRef<EmailLinkHandle, {}>((props, ref) => {
             </button>
             <button
               onClick={openOutlook}
-              className="w-full text-left text-sm text-gray-600 hover:text-gray-900 flex items-center"
+              className="w-full text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center"
             >
               <Image
                 src="/images/outlook-logo.svg"
@@ -172,7 +174,7 @@ const EmailLink = forwardRef<EmailLinkHandle, {}>((props, ref) => {
             </button>
             <button
               onClick={openDefaultClient}
-              className="w-full text-left text-sm text-gray-600 hover:text-gray-900 flex items-center"
+              className="w-full text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center"
             >
               <svg className="h-4 w-4 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -186,5 +188,7 @@ const EmailLink = forwardRef<EmailLinkHandle, {}>((props, ref) => {
     </div>
   );
 });
+
+EmailLink.displayName = 'EmailLink';
 
 export default EmailLink; 

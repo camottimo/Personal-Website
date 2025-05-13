@@ -12,6 +12,7 @@ import {
 import WorkExperience from '@/components/WorkExperience'
 import Projects from '@/components/Projects'
 import EmailLink, { EmailLinkHandle } from '@/components/EmailLink'
+import ThemeToggle from '@/components/ThemeToggle'
 
 const skills = [
   {
@@ -38,7 +39,9 @@ const skills = [
     icon: "💻",
     items: [
       "E-commerce",
-      "UI/UX"
+      "UI/UX",
+      "Conversion-focused design and flows",
+      "HTML/CSS/JS"
     ]
   }
 ]
@@ -218,14 +221,14 @@ export default function Home() {
   const emailLinkRef = useRef<EmailLinkHandle>(null);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200">
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="space-y-16">
           {/* Hero Section */}
           <section className="text-center space-y-6 pt-4">
             {/* Profile Photo */}
             <div className="mx-auto h-40 w-40 relative">
-              <div className="rounded-full overflow-hidden h-40 w-40 border-4 border-gray-100 shadow-lg">
+              <div className="rounded-full overflow-hidden h-40 w-40 border-4 border-gray-100 dark:border-gray-800 shadow-lg">
                 <Image
                   src="/profile-photo.png"
                   alt="Profile photo"
@@ -236,32 +239,39 @@ export default function Home() {
                 />
               </div>
             </div>
-            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
+            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl dark:text-white">
               Hi, I'm Camryn 👋
             </h1>
-            <div className="space-y-2 text-lg text-gray-600">
-              <p>data science meets product vision 🧠➡️📱</p>
-              <p>passionate about building meaningful products that people love 🔥</p>
-              <p>on a journey into product management — where strategy, creativity, and impact collide</p>
-              <p>golfer ⛳️ chess fanatic ♟️ fashion start-up 👕</p>
-              <p>building a clothing brand and always exploring what's next 🚀</p>
+            <div className="max-w-2xl mx-auto">
+              <div className="bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-2xl p-8 shadow-sm space-y-4">
+                <div className="space-y-3">
+                  <p className="text-gray-600 dark:text-gray-300">data science meets product vision 🧠➡️📱</p>
+                  <p className="text-gray-600 dark:text-gray-300">passionate about building meaningful products that people love 🔥</p>
+                  <p className="text-gray-600 dark:text-gray-300">on a journey into product management — where strategy, creativity, and impact collide</p>
+                </div>
+                <div className="h-px bg-gradient-to-r from-transparent via-gray-200 dark:via-gray-700 to-transparent"></div>
+                <div className="space-y-3">
+                  <p className="text-gray-600 dark:text-gray-300">golfer ⛳️ chess fanatic ♟️ fashion start-up 👕</p>
+                  <p className="text-gray-600 dark:text-gray-300">building a clothing brand and always exploring what's next 🚀</p>
+                </div>
+              </div>
             </div>
             
             {/* Contact Links */}
             <div className="flex justify-center gap-6 pt-4">
               <EmailLink ref={emailLinkRef} />
-              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-900 flex items-center">
-                <DocumentIcon className="h-4 w-4 mr-2 text-gray-400" />
+              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white flex items-center">
+                <DocumentIcon className="h-4 w-4 mr-2 text-gray-400 dark:text-gray-500" />
                 Resume
               </a>
-              <a href="https://github.com/camottimo" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-900 flex items-center">
-                <svg className="h-4 w-4 mr-2 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+              <a href="https://github.com/camottimo" target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white flex items-center">
+                <svg className="h-4 w-4 mr-2 text-gray-400 dark:text-gray-500" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                 </svg>
                 GitHub
               </a>
-              <a href="https://www.linkedin.com/in/camryn-ottimo/" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-900 flex items-center">
-                <svg className="h-4 w-4 mr-2 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+              <a href="https://www.linkedin.com/in/camryn-ottimo/" target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white flex items-center">
+                <svg className="h-4 w-4 mr-2 text-gray-400 dark:text-gray-500" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"></path>
                 </svg>
                 LinkedIn
@@ -271,20 +281,20 @@ export default function Home() {
 
           {/* Creative Stack Section */}
           <section className="space-y-6">
-            <h2 className="text-2xl font-semibold flex items-center">
-              <PencilIcon className="h-5 w-5 mr-2 text-gray-400" />
+            <h2 className="text-2xl font-semibold flex items-center dark:text-white">
+              <PencilIcon className="h-5 w-5 mr-2 text-gray-400 dark:text-gray-500" />
               My Creative Stack
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {skills.map((skill) => (
-                <div key={skill.category} className="bg-gray-50 rounded-lg p-6 space-y-4 transition-transform duration-200 hover:scale-105 hover:shadow-xl cursor-pointer">
-                  <div className="flex items-center space-x-3 pb-2 border-b border-gray-200">
+                <div key={skill.category} className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 space-y-4 transition-transform duration-200 hover:scale-105 hover:shadow-xl cursor-pointer">
+                  <div className="flex items-center space-x-3 pb-2 border-b border-gray-200 dark:border-gray-700">
                     <span className="text-2xl">{skill.icon}</span>
-                    <h3 className="text-lg font-semibold text-gray-800">{skill.category}</h3>
+                    <h3 className="text-lg font-semibold text-gray-800 dark:text-white">{skill.category}</h3>
                   </div>
                   <ul className="space-y-3 pt-2">
                     {skill.items.map((item) => (
-                      <li key={item} className="flex items-start text-gray-700 text-sm">
+                      <li key={item} className="flex items-start text-gray-700 dark:text-gray-300 text-sm">
                         <svg className="h-4 w-4 text-green-400 mt-1 mr-2 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
                         <span>{item}</span>
                       </li>
@@ -301,22 +311,22 @@ export default function Home() {
 
           {/* Tools Section */}
           <section className="space-y-4">
-            <h2 className="text-2xl font-semibold flex items-center">
-              <WrenchScrewdriverIcon className="h-5 w-5 mr-2 text-gray-400" />
+            <h2 className="text-2xl font-semibold flex items-center dark:text-white">
+              <WrenchScrewdriverIcon className="h-5 w-5 mr-2 text-gray-400 dark:text-gray-500" />
               Tools I use
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {tools.map((category) => (
                 <div key={category.level} className="space-y-2 flex flex-col items-center">
                   <h3 className={`inline-block px-3 py-1 rounded-full text-sm font-medium
-                    ${category.level === 'Learning' ? 'bg-purple-100 text-purple-800' :
-                    category.level === 'Intermediate' ? 'bg-green-100 text-green-800' :
-                    'bg-blue-100 text-blue-800'}`}>
+                    ${category.level === 'Learning' ? 'bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200' :
+                    category.level === 'Intermediate' ? 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200' :
+                    'bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200'}`}>
                     {category.level}
                   </h3>
                   <div className="flex flex-wrap gap-1.5 justify-center">
                     {category.items.map((tool) => (
-                      <div key={tool.name} className="inline-flex items-center p-2 bg-white rounded-lg shadow-sm border border-gray-100 text-sm">
+                      <div key={tool.name} className="inline-flex items-center p-2 bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 text-sm text-gray-700 dark:text-gray-300">
                         {tool.icon}
                         {tool.name}
                       </div>
@@ -329,15 +339,15 @@ export default function Home() {
 
           {/* Academic Background Section */}
           <section className="space-y-6">
-            <h2 className="text-2xl font-semibold flex items-center">
-              <AcademicCapIcon className="h-5 w-5 mr-2 text-gray-400" />
+            <h2 className="text-2xl font-semibold flex items-center dark:text-white">
+              <AcademicCapIcon className="h-5 w-5 mr-2 text-gray-400 dark:text-gray-500" />
               Academic Background
             </h2>
             <div className="space-y-6">
               {/* UW-Madison */}
               <div className="flex items-start space-x-4">
                 <div className="flex-shrink-0">
-                  <div className="h-16 w-16 relative rounded-full overflow-hidden border-4 border-gray-100 shadow-sm bg-white flex items-center justify-center p-2">
+                  <div className="h-16 w-16 relative rounded-full overflow-hidden border-4 border-gray-100 dark:border-gray-800 shadow-sm bg-white dark:bg-gray-800 flex items-center justify-center p-2">
                     <Image
                       src="/images/schools/uw-madison.svg"
                       alt="University of Wisconsin-Madison"
@@ -351,10 +361,10 @@ export default function Home() {
                 <div className="flex-grow">
                   <div className="flex justify-between items-start">
                     <div>
-                      <h3 className="text-lg font-medium">University of Wisconsin - Madison</h3>
-                      <p className="text-gray-500">Data Science B.S., Computer Science Certificate</p>
+                      <h3 className="text-lg font-medium dark:text-white">University of Wisconsin - Madison</h3>
+                      <p className="text-gray-500 dark:text-gray-400">Data Science B.S., Computer Science Certificate</p>
                     </div>
-                    <span className="text-gray-500">Expected December 2025</span>
+                    <span className="text-gray-500 dark:text-gray-400">Expected December 2025</span>
                   </div>
                 </div>
               </div>
@@ -362,7 +372,7 @@ export default function Home() {
               {/* University of Westminster */}
               <div className="flex items-start space-x-4">
                 <div className="flex-shrink-0">
-                  <div className="h-16 w-16 relative rounded-full overflow-hidden border-4 border-gray-100 shadow-sm">
+                  <div className="h-16 w-16 relative rounded-full overflow-hidden border-4 border-gray-100 dark:border-gray-800 shadow-sm">
                     <Image
                       src="/images/schools/westminster.jpg"
                       alt="University of Westminster"
@@ -375,10 +385,10 @@ export default function Home() {
                 <div className="flex-grow">
                   <div className="flex justify-between items-start">
                     <div>
-                      <h3 className="text-lg font-medium">University of Westminster</h3>
-                      <p className="text-gray-500">Study Abroad Program - London</p>
+                      <h3 className="text-lg font-medium dark:text-white">University of Westminster</h3>
+                      <p className="text-gray-500 dark:text-gray-400">Study Abroad Program - London</p>
                     </div>
-                    <span className="text-gray-500">January 2024 - April 2024</span>
+                    <span className="text-gray-500 dark:text-gray-400">January 2024 - April 2024</span>
                   </div>
                 </div>
               </div>
@@ -387,12 +397,12 @@ export default function Home() {
 
           {/* Contact Form */}
           <section className="space-y-6">
-            <h2 className="text-2xl font-semibold">Reach out ✍️</h2>
+            <h2 className="text-2xl font-semibold dark:text-white">Reach out ✍️</h2>
             <div className="space-y-4">
-              <p className="text-gray-600">
+              <p className="text-gray-600 dark:text-gray-300">
                 If you're interested in my work, I'd love to hear from you.{' '}
                 <span
-                  className="text-blue-600 hover:underline cursor-pointer"
+                  className="text-blue-600 dark:text-blue-400 hover:underline cursor-pointer"
                   onClick={() => {
                     const section = document.getElementById('email-link-section');
                     if (section) {
@@ -409,6 +419,7 @@ export default function Home() {
           </section>
         </div>
       </main>
+      <ThemeToggle />
     </div>
   )
 } 
