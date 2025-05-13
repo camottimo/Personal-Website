@@ -35,7 +35,7 @@ const skills = [
     ]
   },
   {
-    category: "Web design",
+    category: "Web Design",
     icon: "💻",
     items: [
       "E-commerce",
@@ -313,7 +313,7 @@ export default function Home() {
           <section className="space-y-4">
             <h2 className="text-2xl font-semibold flex items-center dark:text-white">
               <WrenchScrewdriverIcon className="h-5 w-5 mr-2 text-gray-400 dark:text-gray-500" />
-              Tools I use
+              Tools I Use
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {tools.map((category) => (
