@@ -48,172 +48,149 @@ const skills = [
 
 const tools = [
   {
-    level: "Learning",
-    items: [
-      {
-        name: "Framer",
-        icon: (
-          <svg viewBox="0 0 24 24" className="w-4 h-4 mr-2">
-            <path fill="#0055FF" d="M4 0h16v8h-8zm0 8h8l8 8H4zm0 8h8v8z"/>
-          </svg>
-        )
-      },
-      {
-        name: "Figma",
-        icon: (
-          <svg viewBox="0 0 24 24" className="w-4 h-4 mr-2">
-            <path fill="#F24E1E" d="M8 24c2.208 0 4-1.792 4-4v-4H8c-2.208 0-4 1.792-4 4s1.792 4 4 4z"/>
-            <path fill="#FF7262" d="M4 12c0-2.208 1.792-4 4-4h4v8H8c-2.208 0-4-1.792-4-4z"/>
-            <path fill="#1ABCFE" d="M4 4c0-2.208 1.792-4 4-4h4v8H8C5.792 8 4 6.208 4 4z"/>
-            <path fill="#0ACF83" d="M12 0h4c2.208 0 4 1.792 4 4s-1.792 4-4 4h-4V0z"/>
-            <path fill="#A259FF" d="M20 12c0 2.208-1.792 4-4 4s-4-1.792-4-4 1.792-4 4-4 4 1.792 4 4z"/>
-          </svg>
-        )
-      },
-      {
-        name: "SQL",
-        icon: (
-          <Image
-            src="/images/sql-logo.svg"
-            alt="SQL logo"
-            width={16}
-            height={16}
-            className="mr-2"
-          />
-        )
-      }
-    ]
+    name: "Python",
+    icon: (
+      <svg viewBox="0 0 24 24" className="w-4 h-4 mr-2">
+        <path fill="#3776AB" d="M11.95 0C5.85 0 6.21 2.58 6.21 2.58l.01 2.67h5.84v.82H3.89s-3.89.44-3.89 5.7c0 5.25 3.4 5.07 3.4 5.07h2.03v-2.44s-.11-2.9 2.85-2.9h4.91s2.76.04 2.76-2.67V3.94S16.46 0 11.95 0zM8.86 1.86c.58 0 1.05.47 1.05 1.05s-.47 1.05-1.05 1.05-1.05-.47-1.05-1.05.47-1.05 1.05-1.05z"/>
+        <path fill="#FDD835" d="M12.05 24c6.1 0 5.74-2.58 5.74-2.58l-.01-2.67h-5.84v-.82h8.17s3.89-.44 3.89-5.7c0-5.25-3.4-5.07-3.4-5.07h-2.03v2.44s.11 2.9-2.85 2.9h-4.91s-2.76-.04-2.76 2.67v4.89S7.54 24 12.05 24zm3.09-1.86c-.58 0-1.05-.47-1.05-1.05s.47-1.05 1.05-1.05 1.05.47 1.05 1.05-.47 1.05-1.05 1.05z"/>
+      </svg>
+    )
   },
   {
-    level: "Intermediate",
-    items: [
-      {
-        name: "Cursor",
-        icon: (
-          <Image
-            src="/images/cursor-logo.svg"
-            alt="Cursor logo"
-            width={16}
-            height={16}
-            className="mr-2"
-          />
-        )
-      },
-      {
-        name: "Illustrator",
-        icon: (
-          <Image
-            src="/images/illustrator-logo.svg"
-            alt="Illustrator logo"
-            width={16}
-            height={16}
-            className="mr-2"
-          />
-        )
-      },
-      {
-        name: "Lightroom",
-        icon: (
-          <Image
-            src="/images/lightroom-logo.svg"
-            alt="Lightroom logo"
-            width={16}
-            height={16}
-            className="mr-2"
-          />
-        )
-      },
-      {
-        name: "Notion",
-        icon: (
-          <svg viewBox="0 0 24 24" className="w-4 h-4 mr-2">
-            <path fill="#000000" d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.046-.326L17.86 1.968c-.42-.326-.981-.7-2.055-.607L3.01 2.295c-.466.046-.56.28-.374.466zm.793 3.08v13.904c0 .747.373 1.027 1.214.98l14.523-.84c.841-.046.935-.56.935-1.167V6.354c0-.606-.233-.933-.748-.887l-15.177.887c-.56.047-.747.327-.747.933zm14.337.745c.093.42 0 .84-.42.888l-.7.14v10.264c-.608.327-1.168.514-1.635.514-.748 0-.935-.234-1.495-.933l-4.577-7.186v6.952L12.21 19s0 .84-1.168.84l-3.222.186c-.093-.186 0-.653.327-.746l.84-.233V9.854L7.822 9.76c-.094-.42.14-1.026.793-1.073l3.456-.233 4.764 7.279v-6.44l-1.215-.139c-.093-.514.28-.887.747-.933zM1.936 1.035l13.31-.98c1.634-.14 2.055-.047 3.082.7l4.249 2.986c.7.513.934.653.934 1.213v16.378c0 1.026-.373 1.634-1.68 1.726l-15.458.934c-.98.047-1.448-.093-1.962-.747l-2.986-3.939C.326 18.532 0 17.853 0 17.06V2.667c0-.839.374-1.54 1.936-1.632z"/>
-          </svg>
-        )
-      },
-      {
-        name: "Snowflake",
-        icon: (
-          <Image
-            src="/images/snowflake.svg"
-            alt="Snowflake logo"
-            width={16}
-            height={16}
-            className="mr-2"
-          />
-        )
-      },
-      {
-        name: "Jira",
-        icon: (
-          <svg viewBox="0 0 24 24" className="w-4 h-4 mr-2">
-            <path fill="#2684FF" d="M11.571 11.513H0a5.218 5.218 0 0 0 5.232 5.215h2.13v2.057A5.215 5.215 0 0 0 12.575 24V12.518a1.005 1.005 0 0 0-1.005-1.005zm5.723-5.756H5.736a5.215 5.215 0 0 0 5.215 5.214h2.129v2.058a5.218 5.218 0 0 0 5.215 5.214V6.762a1.005 1.005 0 0 0-1.001-1.005zM23.017 0H11.459a5.215 5.215 0 0 0 5.215 5.215h2.129v2.057A5.215 5.215 0 0 0 24 12.483V1.005A1.005 1.005 0 0 0 23.017 0z"/>
-          </svg>
-        )
-      }
-    ]
+    name: "Figma",
+    icon: (
+      <svg viewBox="0 0 24 24" className="w-4 h-4 mr-2">
+        <path fill="#F24E1E" d="M8 24c2.208 0 4-1.792 4-4v-4H8c-2.208 0-4 1.792-4 4s1.792 4 4 4z"/>
+        <path fill="#FF7262" d="M4 12c0-2.208 1.792-4 4-4h4v8H8c-2.208 0-4-1.792-4-4z"/>
+        <path fill="#1ABCFE" d="M4 4c0-2.208 1.792-4 4-4h4v8H8C5.792 8 4 6.208 4 4z"/>
+        <path fill="#0ACF83" d="M12 0h4c2.208 0 4 1.792 4 4s-1.792 4-4 4h-4V0z"/>
+        <path fill="#A259FF" d="M20 12c0 2.208-1.792 4-4 4s-4-1.792-4-4 1.792-4 4-4 4 1.792 4 4z"/>
+      </svg>
+    )
   },
   {
-    level: "Advanced",
-    items: [
-      {
-        name: "Python",
-        icon: (
-          <svg viewBox="0 0 24 24" className="w-4 h-4 mr-2">
-            <path fill="#3776AB" d="M11.95 0C5.85 0 6.21 2.58 6.21 2.58l.01 2.67h5.84v.82H3.89s-3.89.44-3.89 5.7c0 5.25 3.4 5.07 3.4 5.07h2.03v-2.44s-.11-2.9 2.85-2.9h4.91s2.76.04 2.76-2.67V3.94S16.46 0 11.95 0zM8.86 1.86c.58 0 1.05.47 1.05 1.05s-.47 1.05-1.05 1.05-1.05-.47-1.05-1.05.47-1.05 1.05-1.05z"/>
-            <path fill="#FDD835" d="M12.05 24c6.1 0 5.74-2.58 5.74-2.58l-.01-2.67h-5.84v-.82h8.17s3.89-.44 3.89-5.7c0-5.25-3.4-5.07-3.4-5.07h-2.03v2.44s.11 2.9-2.85 2.9h-4.91s-2.76-.04-2.76 2.67v4.89S7.54 24 12.05 24zm3.09-1.86c-.58 0-1.05-.47-1.05-1.05s.47-1.05 1.05-1.05 1.05.47 1.05 1.05-.47 1.05-1.05 1.05z"/>
-          </svg>
-        )
-      },
-      {
-        name: "Canva",
-        icon: (
-          <Image
-            src="/images/canva-logo.svg"
-            alt="Canva logo"
-            width={16}
-            height={16}
-            className="mr-2"
-          />
-        )
-      },
-      {
-        name: "ChatGPT",
-        icon: (
-          <Image
-            src="/images/chatgpt-logo.svg"
-            alt="ChatGPT logo"
-            width={16}
-            height={16}
-            className="mr-2"
-          />
-        )
-      },
-      {
-        name: "Shopify",
-        icon: (
-          <Image
-            src="/images/shopify-logo.svg"
-            alt="Shopify logo"
-            width={16}
-            height={16}
-            className="mr-2"
-          />
-        )
-      },
-      {
-        name: "Jupyter",
-        icon: (
-          <Image
-            src="/images/jupyter.svg"
-            alt="Jupyter logo"
-            width={16}
-            height={16}
-            className="mr-2"
-          />
-        )
-      }
-    ]
+    name: "Canva",
+    icon: (
+      <Image
+        src="/images/canva-logo.svg"
+        alt="Canva logo"
+        width={16}
+        height={16}
+        className="mr-2"
+      />
+    )
+  },
+  {
+    name: "Cursor",
+    icon: (
+      <Image
+        src="/images/cursor-logo.svg"
+        alt="Cursor logo"
+        width={16}
+        height={16}
+        className="mr-2"
+      />
+    )
+  },
+  {
+    name: "Shopify",
+    icon: (
+      <Image
+        src="/images/shopify-logo.svg"
+        alt="Shopify logo"
+        width={16}
+        height={16}
+        className="mr-2"
+      />
+    )
+  },
+  {
+    name: "Notion",
+    icon: (
+      <svg viewBox="0 0 24 24" className="w-4 h-4 mr-2">
+        <path fill="#000000" d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.046-.326L17.86 1.968c-.42-.326-.981-.7-2.055-.607L3.01 2.295c-.466.046-.56.28-.374.466zm.793 3.08v13.904c0 .747.373 1.027 1.214.98l14.523-.84c.841-.046.935-.56.935-1.167V6.354c0-.606-.233-.933-.748-.887l-15.177.887c-.56.047-.747.327-.747.933zm14.337.745c.093.42 0 .84-.42.888l-.7.14v10.264c-.608.327-1.168.514-1.635.514-.748 0-.935-.234-1.495-.933l-4.577-7.186v6.952L12.21 19s0 .84-1.168.84l-3.222.186c-.093-.186 0-.653.327-.746l.84-.233V9.854L7.822 9.76c-.094-.42.14-1.026.793-1.073l3.456-.233 4.764 7.279v-6.44l-1.215-.139c-.093-.514.28-.887.747-.933zM1.936 1.035l13.31-.98c1.634-.14 2.055-.047 3.082.7l4.249 2.986c.7.513.934.653.934 1.213v16.378c0 1.026-.373 1.634-1.68 1.726l-15.458.934c-.98.047-1.448-.093-1.962-.747l-2.986-3.939C.326 18.532 0 17.853 0 17.06V2.667c0-.839.374-1.54 1.936-1.632z"/>
+      </svg>
+    )
+  },
+  {
+    name: "Illustrator",
+    icon: (
+      <Image
+        src="/images/illustrator-logo.svg"
+        alt="Illustrator logo"
+        width={16}
+        height={16}
+        className="mr-2"
+      />
+    )
+  },
+  {
+    name: "ChatGPT",
+    icon: (
+      <Image
+        src="/images/chatgpt-logo.svg"
+        alt="ChatGPT logo"
+        width={16}
+        height={16}
+        className="mr-2"
+      />
+    )
+  },
+  {
+    name: "SQL",
+    icon: (
+      <Image
+        src="/images/sql-logo.svg"
+        alt="SQL logo"
+        width={16}
+        height={16}
+        className="mr-2"
+      />
+    )
+  },
+  {
+    name: "Jupyter",
+    icon: (
+      <Image
+        src="/images/jupyter.svg"
+        alt="Jupyter logo"
+        width={16}
+        height={16}
+        className="mr-2"
+      />
+    )
+  },
+  {
+    name: "Lightroom",
+    icon: (
+      <Image
+        src="/images/lightroom-logo.svg"
+        alt="Lightroom logo"
+        width={16}
+        height={16}
+        className="mr-2"
+      />
+    )
+  },
+  {
+    name: "Snowflake",
+    icon: (
+      <Image
+        src="/images/snowflake.svg"
+        alt="Snowflake logo"
+        width={16}
+        height={16}
+        className="mr-2"
+      />
+    )
+  },
+  {
+    name: "Jira",
+    icon: (
+      <svg viewBox="0 0 24 24" className="w-4 h-4 mr-2">
+        <path fill="#2684FF" d="M11.571 11.513H0a5.218 5.218 0 0 0 5.232 5.215h2.13v2.057A5.215 5.215 0 0 0 12.575 24V12.518a1.005 1.005 0 0 0-1.005-1.005zm5.723-5.756H5.736a5.215 5.215 0 0 0 5.215 5.214h2.129v2.058a5.218 5.218 0 0 0 5.215 5.214V6.762a1.005 1.005 0 0 0-1.001-1.005zM23.017 0H11.459a5.215 5.215 0 0 0 5.215 5.215h2.129v2.057A5.215 5.215 0 0 0 24 12.483V1.005A1.005 1.005 0 0 0 23.017 0z"/>
+      </svg>
+    )
   }
 ]
 
@@ -315,23 +292,11 @@ export default function Home() {
               <WrenchScrewdriverIcon className="h-5 w-5 mr-2 text-gray-400 dark:text-gray-500" />
               Tools I Use
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {tools.map((category) => (
-                <div key={category.level} className="space-y-2 flex flex-col items-center">
-                  <h3 className={`inline-block px-3 py-1 rounded-full text-sm font-medium
-                    ${category.level === 'Learning' ? 'bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200' :
-                    category.level === 'Intermediate' ? 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200' :
-                    'bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200'}`}>
-                    {category.level}
-                  </h3>
-                  <div className="flex flex-wrap gap-1.5 justify-center">
-                    {category.items.map((tool) => (
-                      <div key={tool.name} className="inline-flex items-center p-2 bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 text-sm text-gray-700 dark:text-gray-300">
-                        {tool.icon}
-                        {tool.name}
-                      </div>
-                    ))}
-                  </div>
+            <div className="flex flex-wrap gap-3 justify-center">
+              {tools.map((tool) => (
+                <div key={tool.name} className="inline-flex items-center p-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 text-sm text-gray-700 dark:text-gray-300 hover:shadow-md transition-shadow duration-200">
+                  {tool.icon}
+                  {tool.name}
                 </div>
               ))}
             </div>

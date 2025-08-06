@@ -8,6 +8,7 @@ import Image from 'next/image';
 interface Project {
   name: string;
   subtitle: string;
+  status?: string;
   website?: string;
   description: string[];
   achievements: string[];
@@ -16,6 +17,28 @@ interface Project {
 }
 
 const projects: Project[] = [
+  {
+    name: 'Real Estate Social',
+    subtitle: 'Co-founder and Product Lead',
+    status: 'in development',
+    description: [
+      'Led end-to-end product design and wireframing in Figma, crafting a social platform tailored for real estate professionals to build personal brands, showcase listings, and connect with buyers/renters',
+      'Defined the product roadmap and prioritized feature development based on user needs, technical feasibility, and market research',
+      'Hired and managed a full-stack development team; conducted daily standups, tracked sprint progress, and resolved blockers to maintain timeline alignment',
+      'Built an internal Notion-based task management system, applying Agile workflows to streamline developer collaboration and feature delivery',
+      'Oversaw implementation of core features, including user authentication (Agent vs Buyer), home feed navigation, listing creation, short-form video content, chat/messaging, and scheduling tools',
+      'Applied product thinking to ensure intuitive UX and scalable infrastructure'
+    ],
+    achievements: [
+      'Conducted API research and made strategic integration decisions to enhance core platform features and user experience',
+      'Selected Google Places API to standardize address inputs and enable autocomplete functionality across listings and posts',
+      'Integrated Spotify API to allow users to personalize video content with licensed music, increasing user engagement and content richness',
+      'Researched and proposed the use of real estate license verification APIs to ensure the legitimacy of agent accounts and streamline onboarding for brokerages',
+      'Balanced developer feasibility, cost, and UX impact when evaluating third-party APIs and their roles in the broader product architecture',
+      'Collaborated with the engineering team to align API integrations with technical constraints and user needs'
+    ],
+    imageSrc: '/images/projects/real-estate-social-logo.svg'
+  },
   {
     name: 'Understated',
     subtitle: 'Self-initiated clothing brand built from the ground up',
@@ -77,6 +100,9 @@ export default function Projects() {
                 <div>
                   <h3 className="text-lg font-medium dark:text-white">{project.name}</h3>
                   <p className="text-gray-500 dark:text-gray-400">{project.subtitle}</p>
+                  {project.status && (
+                    <p className="text-gray-400 dark:text-gray-500 text-sm italic">{project.status}</p>
+                  )}
                   {project.website && (
                     <a
                       href={project.website}
@@ -154,6 +180,9 @@ export default function Projects() {
                           {selectedProject?.name}
                         </Dialog.Title>
                         <p className="text-gray-600 dark:text-gray-300">{selectedProject?.subtitle}</p>
+                        {selectedProject?.status && (
+                          <p className="text-gray-500 dark:text-gray-400 text-sm italic">{selectedProject?.status}</p>
+                        )}
                         {selectedProject?.website && (
                           <a
                             href={selectedProject.website}
@@ -199,7 +228,17 @@ export default function Projects() {
                   </div>
 
                   <div className="flex flex-wrap gap-2 pt-4">
-                    {[
+                    {(selectedProject?.name === 'Real Estate Social' ? [
+                      'Figma',
+                      'Product Management',
+                      'Agile/Scrum',
+                      'API Integration',
+                      'Google Places API',
+                      'Spotify API',
+                      'User Authentication',
+                      'Team Leadership',
+                      'Notion'
+                    ] : [
                       'Adobe Illustrator',
                       'Adobe Lightroom',
                       'Shopify',
@@ -207,7 +246,7 @@ export default function Projects() {
                       'UI/UX',
                       'Fulfillment/Logistics',
                       'Digital Marketing'
-                    ].map((tech) => (
+                    ]).map((tech) => (
                       <span
                         key={tech}
                         className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-sm"
